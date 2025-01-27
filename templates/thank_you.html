@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 600px;
+        width: 90%;
+        text-align: center;
+      }
+      .logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+      }
+      .message-box {
+        background-color: #e9f5ff;
+        border: 1px solid #b3e0ff;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: left;
+      }
+      .message-box p {
+        margin: 10px 0;
+      }
+      .zoom-link {
+        color: #007bff;
+        text-decoration: none;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="{{ url_for('static', filename='company_logo.png') }}"
+        alt="Company Logo"
+        class="logo"
+      />
+      <h1>Thank You!</h1>
+      <p>Your Zoom meeting details have been sent to Telegram.</p>
+      <div class="message-box">
+        <p>📢 <strong>New Zoom Meeting Created!</strong></p>
+        <p>🔐 <strong>Meeting ID:</strong> {{ meeting_id }}</p>
+        <p>💼<strong>Topic:</strong> {{ meeting_topic }}</p>
+        <p>
+          🔗 <strong>Join Link:</strong>
+          <a href="{{ zoom_link }}" class="zoom-link"
+            >Click here to join the meeting</a
+          >
+        </p>
+      </div>
+
+      <h3>Registered Students</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in registered_students %}
+          <tr>
+            <td>{{ student.email }}</td>
+            <td>{{ student.name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr />
+      <br />
+    </div>
+  </body>
+</html>
